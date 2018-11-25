@@ -1,3 +1,11 @@
 ## NCAA Men's Basketball Home Court Wins
 
-This project uses Python Requests, BeautifulSoup, and Pandas to scrape college basketball stats off [College Basketball Reference](https://www.sports-reference.com/cbb/). The idea is to determine the percentage of home team wins vs total home games, which could potentially create a profitable betting strategy. 
+The idea of this project is to determine the ratio of home wins to total home games in men's college basketball in order to possibly create a profitable betting strategy. The information used is from [College Basketball Reference](https://www.sports-reference.com/cbb/). The only information being used is total home wins from a season vs total home games played. Money lines are not taken into account.
+
+#### Python Libraries Used:
+* Selenium
+* Beautiful Soup
+* re
+* Pandas
+* Tabulate
+* os
