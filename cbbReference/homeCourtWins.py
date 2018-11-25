@@ -28,3 +28,14 @@ datalist.append(df[0])
 
 # end the browser session
 driver.quit()
+
+# combine the dataframes in the list into one big dataframe (only one in list for now)
+result = pd.concat([pd.DataFrame(datalist[i]) for i in range(len(datalist))], ignore_index=True)
+
+# convert the pandas dataframe into JSON
+json_records = result.to_json(orient='records')
+
+# pretty print to CLI with tabulate
+# converts to an ascii table
+print(tabulate(result, headers=["Rk", "School",	"G",	"W",	"L",	"W-L %", "SRS", "SOS", "W", "L", "W", "L", "W", "L", "Tm.", "Opp.", "MP", "FG", "FGA", "FG %", "3P", "3PA", "3P %", "FT", "FTA", "FT %", "ORB", "TRB", "AST", "STL", "BLK", "TOV", "PF"], tablefmt='psql'))
+
