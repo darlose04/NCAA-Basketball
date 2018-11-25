@@ -18,7 +18,7 @@ soup_level1 = BeautifulSoup(driver.page_source, 'lxml')
 datalist = [] # empty list for storing tables
 
 # grab the table on the page
-table = soup_level1.find_all('table')[0]
+table = soup_level1.find_all('table')
 
 # giving the html table to pandas to put in a dataframe
 df = pd.read_html(str(table), header=0)
@@ -37,5 +37,6 @@ json_records = result.to_json(orient='records')
 
 # pretty print to CLI with tabulate
 # converts to an ascii table
-print(tabulate(result, headers=["Rk", "School",	"G",	"W",	"L",	"W-L %", "SRS", "SOS", "W", "L", "W", "L", "W", "L", "Tm.", "Opp.", "MP", "FG", "FGA", "FG %", "3P", "3PA", "3P %", "FT", "FTA", "FT %", "ORB", "TRB", "AST", "STL", "BLK", "TOV", "PF"], tablefmt='psql'))
+print(tabulate(result, headers=["RK", "School", "G", "W", "L", "W-L%", "SRS", "SOS", "Conf-W", "Conf-L", "Home-W", "Home-L", "Away-W", "Away-L", "Points-Tm", "Points-Opp", "", "MP", "FG", "FGA", "FG%", "3P", "3PA", "3P%", "FT", "FTA", "FT%", "ORB", "TRB", "AST", "STL", "BLK", "TOV", "PF"], tablefmt='simple'))
 
+# print(datalist)
