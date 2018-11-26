@@ -34,7 +34,7 @@ I'll need to look into. Possibly with Puppeteer and JS.
 '''
 
 # loop through seasons going back to the 03-04 season
-while seasons > 2017:
+while seasons > 2000:
   # use Beautiful soup to pull info from tables
   soup = BeautifulSoup(driver.page_source, 'html.parser')
 
