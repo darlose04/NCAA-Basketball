@@ -22,8 +22,8 @@ x = 16
 y = 17
 
 # these are used to keep track of the number of home games
-homeWins = 0
-homeLosses = 0
+homeWins = []
+homeLosses = []
 
 
 
@@ -34,11 +34,20 @@ I'll need to look into. Possibly with Puppeteer and JS.
 '''
 
 # loop through seasons going back to the 03-04 season
-while seasons > 2003:
+while seasons > 2017:
   # use Beautiful soup to pull info from tables
-  soup_level1 = BeautifulSoup(driver.page_source, 'html.parser')
+  soup = BeautifulSoup(driver.page_source, 'html.parser')
 
+  table = soup.find("tbody")
   
+  for row in table.find_all("td", {"data-stat": "wins_home"}):
+    homeWins.append(int(row.get_text()))
+
+  for row in table.find_all("td", {"data-stat": "losses_home"}):
+    homeLosses.append(int(row.get_text()))
+    
+
+
 
   # these if statements add leading zeroes to the x and y values once they go below 10 (with zfill()). 
   # this is necessary because of the link_text in the html
@@ -66,8 +75,18 @@ while seasons > 2003:
 driver.quit()
 
 # finding the total number of home games and then the ratio of wins to games
-totalHomeGames = homeLosses + homeWins
-ratio = homeWins / totalHomeGames
+totalHomeWins = sum(homeWins)
+print("Home Wins = " + str(totalHomeWins))
+totalHomeLosses = sum(homeLosses)
+print("Home Losses = " + str(totalHomeLosses))
+
+totalHomeGames = totalHomeWins + totalHomeLosses
+print("Total Home Games = " + str(totalHomeGames))
+
+ratioWinsPerGame = totalHomeWins / totalHomeGames
+
+
+print("Home Win % = " + "{:.2%}".format(ratioWinsPerGame))
 
 
 
