@@ -20,7 +20,7 @@ y = 17
 homeWins = []
 homeLosses = []
 
-# loop through seasons going back to the 03-04 season
+# loop through seasons going back to the specified season
 while seasons > 2014:
   # use Beautiful soup to pull info from tables
   soup = BeautifulSoup(driver.page_source, 'html.parser')
@@ -65,9 +65,4 @@ print("Total Home Games = " + str(totalHomeGames))
 
 ratioWinsPerGame = totalHomeWins / totalHomeGames
 
-
 print("Home Win % = " + "{:.2%}".format(ratioWinsPerGame))
-
-
-
-# «
