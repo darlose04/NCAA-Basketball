@@ -15,20 +15,38 @@ driver = webdriver.Chrome()
 driver.implicitly_wait(30)
 driver.get(url)
 
-soup_level1 = BeautifulSoup(driver.page_source, 'html.parser')
+seasons = 2018
+x = 16
+y = 17
 
-datalist = [] # empty list for storing tables
+while seasons > 2003:
+  if x < 10:
+    x = str(x).zfill(2)
+  if y < 10:
+    y = str(y).zfill(2)
 
-# grab the table on the page
-table = soup_level1.find_all('table')
+  season_button = driver.find_element_by_link_text('« 20' + str(x) + '-' + str(y) + ' Season')
+  season_button.click()
 
-# giving the html table to pandas to put in a dataframe
-df = pd.read_html(str(table), header=[0,1])
+  seasons -= 1
+  x = int(x)
+  x -= 1
+  y = int(y)
+  y -= 1
 
-# store the dataframe in a list
-datalist.append(df)
+# soup_level1 = BeautifulSoup(driver.page_source, 'html.parser')
+
+
 
 # end the browser session
 driver.quit()
 
 
+
+
+
+
+
+
+
+# «
