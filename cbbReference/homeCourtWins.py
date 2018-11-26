@@ -21,6 +21,12 @@ seasons = 2018
 x = 16
 y = 17
 
+# these are used to keep track of the number of home games
+homeWins = 0
+homeLosses = 0
+
+
+
 '''
 Instead of using this while loop in this fashion, I could probably create while loop that 
 changes the season year in the URL. This may result in cleaner code, so it's something
@@ -29,6 +35,11 @@ I'll need to look into. Possibly with Puppeteer and JS.
 
 # loop through seasons going back to the 03-04 season
 while seasons > 2003:
+  # use Beautiful soup to pull info from tables
+  soup_level1 = BeautifulSoup(driver.page_source, 'html.parser')
+
+  
+
   # these if statements add leading zeroes to the x and y values once they go below 10 (with zfill()). 
   # this is necessary because of the link_text in the html
   if x < 10:
@@ -47,18 +58,16 @@ while seasons > 2003:
   y = int(y)
   y -= 1
 
-# soup_level1 = BeautifulSoup(driver.page_source, 'html.parser')
+
 
 
 
 # end the browser session
 driver.quit()
 
-
-
-
-
-
+# finding the total number of home games and then the ratio of wins to games
+totalHomeGames = homeLosses + homeWins
+ratio = homeWins / totalHomeGames
 
 
 
